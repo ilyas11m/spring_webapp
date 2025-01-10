@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/airplane.css">
+    <script src="/js/airplanes_script.js"></script>
+    <title>Airplanes</title>
+</head>
+<body>
+    <div class="container">
+        <div class="list_links">
+            <h1 class="airplane_list color_header">
+                List of Airplanes
+            </h1>
+            <h1 class="flights_list color_header"> 
+                <a th:href="@{/airplane_flight_page}">
+                    List of Flights
+                </a> 
+            </h1>
+            <h1 class="tickets_list color_header"> 
+                <a th:href="@{/airplane_ticket_page}">
+                    List of Tickets
+                </a> 
+            </h1>
+            <h1 class="passengers_list color_header"> 
+                <a th:href="@{/airplane_passenger_page}">
+                    List of Passengers
+                </a> 
+            </h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="th1 th_border">Airplane ID</th>
+                    <th class="th_border">Model</th>
+                    <th class="th_border">Capacity</th>
+                    <th class="th_border">Distance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="airplane : ${airplanes}">
+                    <td th:text="${airplane.airplaneId}"></td>
+                    <td th:text="${airplane.model}"></td>
+                    <td th:text="${airplane.capacity}"></td>
+                    <td th:text="${airplane.distance}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions buttons">
+            <div class="create buttons">
+                <button class="buttons_action">Добавить</button>
+            </div>
+            <div class="edit buttons">
+                <button class="buttons_action">Редактировать</button>
+            </div>
+            <div class="find buttons">
+                <button class="buttons_action">Поиск</button>
+            </div>
+            <div class="delete_by_id buttons">
+                <button class="buttons_action">Удалить по ID</button>
+            </div>
+            <div class="delete buttons">
+                <form id="deleteAllAirplanes" action="airplane_delete_all" method="post">
+                    <button type="submit" class="buttons_action">Очистить</button>
+                </form>
+            </div>
+        </div>
+        <div id="createModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeCreateModal">&times;</span>
+                <h2 class="color_header">Добавить новый объект Airplane</h2>
+                <form id="createAirplaneForm" action="airplane" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="model" name="model" placeholder="Название модели :" required><br>
+                        <input class="inputtextarea" type="number" id="capacity" name="capacity" placeholder="Вместимость Самолета:" required><br>
+                        <input class="inputtextarea" type="number" id="distance" name="distance" placeholder="Дальность полета" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Save </button>
+                </form>
+            </div>
+        </div>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeEditModal">&times;</span>
+                <h2 class="color_header">Изменить существующий объект Airplane</h2>
+                <form id="editAirplaneForm" action="airplane_edit" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="number" id="airplane_id" name="airplaneId" placeholder="ID Самолета:" required><br>
+                        <input class="inputtextarea" type="text" id="editModel" name="newModel" placeholder="Изменить имя модели:"><br>
+                        <input class="inputtextarea" type="number" id="editCapacity" name="newCapacity" placeholder="Изменить вместимость:"><br>
+                        <input class="inputtextarea" type="number" id="editDistance" name="newDistance" placeholder="Изменить дальность полета"><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Save </button>
+                </form>
+            </div>
+        </div>
+        <div id="deleteByIdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDeleteByIdModal">&times;</span>
+                <h2 class="color_header">Удалить Airplane по ID</h2>
+                <form id="deleteByIdForm" action="airplane_delete_by_id" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="airplaneId" name="airplaneId" placeholder="ID удаляемого Самолета:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Ok </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

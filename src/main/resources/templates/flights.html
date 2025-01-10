@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/flights.css">
+    <script src="/js/flights_script.js"></script>
+    <title>Flights</title>
+</head>
+<body>
+    <div class="container">
+        <div class="list_links">
+            <h1 class="airplane_list color_header">
+                <a th:href="@{/flight_airplane_page}">
+                    List of Airplanes
+                </a>
+            </h1>
+            <h1 class="flights_list color_header"> 
+                List of Flights
+            </h1>
+            <h1 class="tickets_list color_header"> 
+                <a th:href="@{/flight_ticket_page}">
+                    List of Tickets
+                </a> 
+            </h1>
+            <h1 class="passengers_list color_header"> 
+                <a th:href="@{/flight_passenger_page}">
+                    List of Passengers
+                </a> 
+            </h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="th1 th_border">Flight ID</th>
+                    <th class="th_border">Number</th>
+                    <th class="th_border">Departure</th>
+                    <th class="th_border">Arrival</th>
+                    <th class="th_border">Duration</th>
+                    <th class="th_border">Airplane</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="flight : ${flights}">
+                    <td th:text="${flight.flightId}"></td>
+                    <td th:text="${flight.flightNumber}"></td>
+                    <td th:text="${flight.departureLocation}"></td>
+                    <td th:text="${flight.arrivalLocation}"></td>
+                    <td th:text="${flight.durationMinutes}"></td>
+                    <td th:text="${flight.airplane}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions buttons">
+            <div class="create buttons">
+                <button class="buttons_action">Create</button>
+            </div>
+            <div class="edit buttons">
+                <button class="buttons_action">Edit</button>
+            </div>
+            <div class="find buttons">
+                <button class="buttons_action">Find</button>
+            </div>
+            <div class="delete_by_id buttons">
+                <button class="buttons_action">Delete by id</button>
+            </div>
+            <div class="delete buttons">
+                <form id="deleteAllFlights" action="flight_delete_all" method="post">
+                    <button type="submit" class="buttons_action">Clear all</button>
+                </form>
+            </div>
+        </div>
+        <div id="createModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeCreateModal">&times;</span>
+                <h2 class="color_header">Add New Flight</h2>
+                <form id="createFlightsForm" action="flight" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="flightNumber" name="flightNumber" placeholder="Number of flight:" required><br>
+                        <input class="inputtextarea" type="text" id="departureLocation" name="departureLocation" placeholder="Departure:" required><br>
+                        <input class="inputtextarea" type="text" id="arrivalLocation" name="arrivalLocation" placeholder="Arrival:" required><br>
+                        <input class="inputtextarea" type="number" id="durationMinutes" name="durationMinutes" placeholder="Duration of flight (minutes):" required><br>
+                        <input class="inputtextarea" type="number" id="airplane" name="airplaneId" placeholder="Airplane's id:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action">Save</button>
+                </form>
+            </div>
+        </div>
+        <div id="deleteByIdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDeleteByIdModal">&times;</span>
+                <h2 class="color_header">Delete Airplane by ID</h2>
+                <form id="deleteByIdForm" action="flight_delete_by_id" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="flightId" name="flightId" placeholder="ID of Flight:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Ok </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

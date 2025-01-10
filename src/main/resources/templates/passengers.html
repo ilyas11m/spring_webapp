@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/passengers.css">
+    <script src="/js/passengers_script.js"></script>
+    <title>Passengers</title>
+</head>
+<body>
+    <div class="container">
+        <div class="list_links">
+            <h1 class="airplane_list color_header">
+                <a th:href="@{/passenger_airplane_page}">
+                    List of Airplanes
+                </a>
+            </h1>
+            <h1 class="flights_list color_header"> 
+                <a th:href="@{/passenger_flight_page}">
+                    List of Flights
+                </a>
+            </h1>
+            <h1 class="tickets_list color_header"> 
+                <a th:href="@{/passenger_ticket_page}">
+                    List of Tickets
+                </a>
+            </h1>
+            <h1 class="passengers_list color_header"> 
+                List of Passengers 
+            </h1>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="th1 th_border">Passenger ID</th>
+                    <th class="th_border">First Name</th>
+                    <th class="th_border">Last Name</th>
+                    <th class="th_border">Email</th>
+                    <th class="th_border">Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="passenger : ${passengers}">
+                    <td th:text="${passenger.passengerId}"></td>
+                    <td th:text="${passenger.firstName}"></td>
+                    <td th:text="${passenger.lastName}"></td>
+                    <td th:text="${passenger.email}"></td>
+                    <td th:text="${passenger.phoneNumber}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions buttons">
+            <div class="create buttons">
+                <button class="buttons_action">Create</button>
+            </div>
+            <div class="edit buttons">
+                <button class="buttons_action">Edit</button>
+            </div>
+            <div class="find buttons">
+                <button class="buttons_action">Find</button>
+            </div>
+            <div class="delete_by_id buttons">
+                <button class="buttons_action">Delete by id</button>
+            </div>
+            <div class="delete buttons">
+                <button class="buttons_action">Clear all</button>
+            </div>
+        </div>
+        <div id="createModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeCreateModal">&times;</span>
+                <h2 class="color_header">Add New Passenger</h2>
+                <form id="createTicketsForm" action="passenger" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="firstName" name="firstName" placeholder="First name:" required><br>
+                        <input class="inputtextarea" type="text" id="lastName" name="lastName" placeholder="Last name:" required><br>
+                        <input class="inputtextarea" type="text" id="email" name="email" placeholder="@email:" required><br>
+                        <input class="inputtextarea" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone number:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
