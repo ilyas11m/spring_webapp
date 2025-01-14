@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,6 +18,11 @@ public class FlightController {
 
     private final FlightService flightService;
     private final AirplaneService airplaneService;
+
+    public FlightController(FlightService flightService, AirplaneService airplaneService) {
+        this.flightService = flightService;
+        this.airplaneService = airplaneService;
+    }
 
     @GetMapping("/flight_airplane_page")
     public String getAirplanePage(Model model) {
@@ -33,15 +39,37 @@ public class FlightController {
         return "redirect:/passenger";
     }
 
-    public FlightController(FlightService flightService, AirplaneService airplaneService) {
-        this.flightService = flightService;
-        this.airplaneService = airplaneService;
-    }
-
     @GetMapping("/flight")
     public String findAllFlights(Model model) {
         List<Flight> flights = flightService.findAll();
         model.addAttribute("flights", flights);
+        return "flights";
+    }
+
+    @GetMapping("/flight_find")
+    public String findFlight(@RequestParam(required = false) String flightNumber,
+                             @RequestParam(required = false) String departureLocation,
+                             @RequestParam(required = false) String arrivalLocation,
+                             @RequestParam(required = false) Integer durationMinutes,
+                             Model model) {
+        List<Flight> foundFlights = flightService.findAll();
+        if (flightNumber != null && !flightNumber.isEmpty()) {
+            foundFlights = foundFlights.stream().filter(flight -> flight.getFlightNumber()
+                    .equalsIgnoreCase(flightNumber)).toList();
+        }
+        if (departureLocation != null && !departureLocation.isEmpty()) {
+            foundFlights = foundFlights.stream().filter(flight -> flight.getDepartureLocation().
+                    equalsIgnoreCase(departureLocation)).toList();
+        }
+        if (arrivalLocation != null && !arrivalLocation.isEmpty()) {
+            foundFlights = foundFlights.stream().filter(flight -> flight.getArrivalLocation().
+                    equalsIgnoreCase(arrivalLocation)).toList();
+        }
+        if (durationMinutes != null && durationMinutes > 0) {
+            foundFlights = foundFlights.stream().filter(flight -> flight.getDurationMinutes().
+                    equals(durationMinutes)).toList();
+        }
+        model.addAttribute("flights", foundFlights);
         return "flights";
     }
 
@@ -64,12 +92,32 @@ public class FlightController {
         return "flights";
     }
 
+    @PostMapping("/flight_edit")
+    public String editFlight(@RequestParam Long flightId,
+                             @RequestParam(required = false) String newNumber,
+                             @RequestParam(required = false) String newDeparture,
+                             @RequestParam(required = false) String newArrival,
+                             @RequestParam(required = false) Integer newDuration,
+                             Model model) {
+        if ((newNumber == null || newNumber.isEmpty()) &&
+                (newDeparture == null || newDeparture.isEmpty()) &&
+                (newArrival == null || newArrival.isEmpty()) &&
+                (newDuration == null)) {
+            throw new IllegalArgumentException("At least one filed must be provided for update");
+        }
+
+        flightService.updateFlight(flightId, newNumber, newDeparture, newArrival, newDuration);
+        List<Flight> flights = flightService.findAll();
+        model.addAttribute("flights", flights);
+        return "redirect:/flight";
+    }
+
     @PostMapping("/flight_delete_by_id")
     public String deleteById(@RequestParam Long flightId, Model model ) {
         flightService.deleteById(flightId);
         List<Flight> flights = flightService.findAll();
         model.addAttribute("flights", flights);
-        return "flights";
+        return "redirect:/flight";
     }
 
     @PostMapping("/flight_delete_all")
@@ -77,7 +125,7 @@ public class FlightController {
         flightService.deleteAll();
         List<Flight> flights = flightService.findAll();
         model.addAttribute("flights", flights);
-        return "flights";
+        return "redirect:/flight";
     }
 
 }

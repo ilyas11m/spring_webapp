@@ -54,4 +54,61 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 200);
         }
     });
+
+    const editButton = document.querySelector(".edit .buttons_action");
+    const editModal = document.getElementById("editModal");
+    const closeEditModal = document.getElementById("closeEditModal");
+    const editModalContent = editModal.querySelector(".modal-content");
+
+    editButton.addEventListener("click", function () {
+        editModal.classList.add("show");
+        setTimeout(() => {
+            editModalContent.classList.add("show");
+        }, 50);
+    });
+
+    closeEditModal.addEventListener("click", function () {
+        editModalContent.classList.remove("show");
+        setTimeout(() => {
+            editModal.classList.remove("show");
+        }, 200);
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === deleteByIdModal) {
+            deleteByIdModalContent.classList.remove("show");
+            setTimeout(() => {
+                deleteByIdModal.classList.remove("show");
+            }, 200);
+        }
+    });
+
+    const findButton = document.querySelector(".find .buttons_action");
+    const findModal = document.getElementById("findModal");
+    const closeFindModal = document.getElementById("closeFindModal");
+    const findModalContent = findModal.querySelector(".modal-content");
+
+    findButton.addEventListener("click", function () {
+        findModal.classList.add("show");
+        setTimeout(() => {
+            findModalContent.classList.add("show");
+        }, 50);
+    });
+
+    closeFindModal.addEventListener("click", function () {
+        findModalContent.classList.remove("show");
+        setTimeout(() => {
+            findModal.classList.remove("show");
+        }, 200);
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === findModal) {
+            findModalContent.classList.remove("show");
+            setTimeout(() => {
+                findModal.classList.remove("show");
+            }, 200);
+        }
+    });
+
 });
