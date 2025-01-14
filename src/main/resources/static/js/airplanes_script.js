@@ -82,4 +82,33 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 200);
         }
     });
+
+    const findByButton = document.querySelector(".find .buttons_action");
+    const findByModal = document.getElementById("findByModal");
+    const closeFindByModal = document.getElementById("closeFindByModal");
+    const findByModalContent = findByModal.querySelector(".modal-content");
+
+    findByButton.addEventListener("click", function () {
+        findByModal.classList.add("show");
+        setTimeout(() => {
+            findByModalContent.classList.add("show");
+        }, 50);
+    });
+
+    closeFindByModal.addEventListener("click", function () {
+        findByModalContent.classList.remove("show");
+        setTimeout(() => {
+            findByModal.classList.remove("show");
+        }, 200);
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === findByModal) {
+            findByModalContent.classList.remove("show");
+            setTimeout(() => {
+                findByModal.classList.remove("show");
+            }, 200);
+        }
+    });
+
 });

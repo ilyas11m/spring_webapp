@@ -77,7 +77,7 @@
                         <input class="inputtextarea" type="number" id="capacity" name="capacity" placeholder="Вместимость Самолета:" required><br>
                         <input class="inputtextarea" type="number" id="distance" name="distance" placeholder="Дальность полета" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Save </button>
+                    <button type="submit" class="buttons_action"> Сохранить </button>
                 </form>
             </div>
         </div>
@@ -92,7 +92,7 @@
                         <input class="inputtextarea" type="number" id="editCapacity" name="newCapacity" placeholder="Изменить вместимость:"><br>
                         <input class="inputtextarea" type="number" id="editDistance" name="newDistance" placeholder="Изменить дальность полета"><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Save </button>
+                    <button type="submit" class="buttons_action"> Сохранить </button>
                 </form>
             </div>
         </div>
@@ -104,7 +104,21 @@
                     <div class="input_area">
                         <input class="inputtextarea" type="text" id="airplaneId" name="airplaneId" placeholder="ID удаляемого Самолета:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Ok </button>
+                    <button type="submit" class="buttons_action"> Ок </button>
+                </form>
+            </div>
+        </div>
+        <div id="findByModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeFindByModal">&times;</span>
+                <h2 class="color_header">Поиск Airplane</h2>
+                <form id="findByForm" action="airplane_find" method="get">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="foundAirplaneModel" name="airplaneModel" placeholder="Модель искомого Самолета:"><br>
+                        <input class="inputtextarea" type="text" id="foundAirplaneCapacity" name="airplaneCapacity" placeholder="Вместимость искомого Самолета:"><br>
+                        <input class="inputtextarea" type="text" id="foundAirplaneDistance" name="airplaneDistance" placeholder="Дальность искомого Самолета:"><br>
+                    </div>
+                    <button type="submit" class="buttons_action">Ок</button>
                 </form>
             </div>
         </div>

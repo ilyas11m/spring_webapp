@@ -54,48 +54,79 @@
         </table>
         <div class="actions buttons">
             <div class="create buttons">
-                <button class="buttons_action">Create</button>
+                <button class="buttons_action">Добавить</button>
             </div>
             <div class="edit buttons">
-                <button class="buttons_action">Edit</button>
+                <button class="buttons_action">Редактировать</button>
             </div>
             <div class="find buttons">
-                <button class="buttons_action">Find</button>
+                <button class="buttons_action">Поиск</button>
             </div>
             <div class="delete_by_id buttons">
-                <button class="buttons_action">Delete by id</button>
+                <button class="buttons_action">Удалить по ID</button>
             </div>
             <div class="delete buttons">
                 <form id="deleteAllFlights" action="flight_delete_all" method="post">
-                    <button type="submit" class="buttons_action">Clear all</button>
+                    <button type="submit" class="buttons_action">Очистить</button>
                 </form>
             </div>
         </div>
         <div id="createModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeCreateModal">&times;</span>
-                <h2 class="color_header">Add New Flight</h2>
+                <h2 class="color_header">Добавить новый объект Flight</h2>
                 <form id="createFlightsForm" action="flight" method="post">
                     <div class="input_area">
-                        <input class="inputtextarea" type="text" id="flightNumber" name="flightNumber" placeholder="Number of flight:" required><br>
-                        <input class="inputtextarea" type="text" id="departureLocation" name="departureLocation" placeholder="Departure:" required><br>
-                        <input class="inputtextarea" type="text" id="arrivalLocation" name="arrivalLocation" placeholder="Arrival:" required><br>
-                        <input class="inputtextarea" type="number" id="durationMinutes" name="durationMinutes" placeholder="Duration of flight (minutes):" required><br>
-                        <input class="inputtextarea" type="number" id="airplane" name="airplaneId" placeholder="Airplane's id:" required><br>
+                        <input class="inputtextarea" type="text" id="flightNumber" name="flightNumber" placeholder="Номер полёта:" required><br>
+                        <input class="inputtextarea" type="text" id="departureLocation" name="departureLocation" placeholder="Вылет:" required><br>
+                        <input class="inputtextarea" type="text" id="arrivalLocation" name="arrivalLocation" placeholder="Прилёт:" required><br>
+                        <input class="inputtextarea" type="number" id="durationMinutes" name="durationMinutes" placeholder="Длительность полёта (в минутах):" required><br>
+                        <input class="inputtextarea" type="number" id="airplane" name="airplaneId" placeholder="ID Самолёта:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action">Save</button>
+                    <button type="submit" class="buttons_action"> Сохранить </button>
+                </form>
+            </div>
+        </div>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeEditModal">&times;</span>
+                <h2 class="color_header">Изменить существующий объект Flight</h2>
+                <form id="editFlightForm" action="flight_edit" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="number" id="flight_id" name="flightId" placeholder="ID Полёта:" required><br>
+                        <input class="inputtextarea" type="text" id="editNumber" name="newNumber" placeholder="Изменить номер полёта:"><br>
+                        <input class="inputtextarea" type="text" id="editDeparture" name="newDeparture" placeholder="Изменить место вылета:"><br>
+                        <input class="inputtextarea" type="text" id="editArrival" name="newArrival" placeholder="Изменить место прилёта"><br>
+                        <input class="inputtextarea" type="number" id="editDuration" name="newDuration" placeholder="Изменить длительность полёта (в минутах)"><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Сохранить </button>
+                </form>
+            </div>
+        </div>
+        <div id="findModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeFindModal">&times;</span>
+                <h2 class="color_header">Поиск объекта Flight</h2>
+                <form id="findFlightsForm" action="flight_find" method="get">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="foundFlightNumber" name="flightNumber" placeholder="Номер полёта:"><br>
+                        <input class="inputtextarea" type="text" id="foundDepartureLocation" name="departureLocation" placeholder="Вылет:"><br>
+                        <input class="inputtextarea" type="text" id="foundArrivalLocation" name="arrivalLocation" placeholder="Прилёт:"><br>
+                        <input class="inputtextarea" type="number" id="foundDurationMinutes" name="durationMinutes" placeholder="Длительность полёта (в минутах):"><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Ок </button>
                 </form>
             </div>
         </div>
         <div id="deleteByIdModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeDeleteByIdModal">&times;</span>
-                <h2 class="color_header">Delete Airplane by ID</h2>
+                <h2 class="color_header">Удалить Flight по ID</h2>
                 <form id="deleteByIdForm" action="flight_delete_by_id" method="post">
                     <div class="input_area">
                         <input class="inputtextarea" type="text" id="flightId" name="flightId" placeholder="ID of Flight:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Ok </button>
+                    <button type="submit" class="buttons_action"> Ок </button>
                 </form>
             </div>
         </div>

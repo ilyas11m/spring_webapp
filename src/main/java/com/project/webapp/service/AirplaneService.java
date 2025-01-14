@@ -24,6 +24,10 @@ public class AirplaneService {
         return airplaneRepository.findById(airplaneId).orElse(null);
     }
 
+    public List<Airplane> findAll() {
+        return airplaneRepository.findAll();
+    }
+
     @Transactional
     public Airplane updateAirplane(Long id, String newModel, Integer newCapacity, Integer newDistance) {
         Airplane airplane = airplaneRepository.findById(id)
@@ -49,9 +53,4 @@ public class AirplaneService {
     public void deleteAll() {
         airplaneRepository.deleteAll();
     }
-
-    public List<Airplane> findAllAirplanes() {
-        return airplaneRepository.findAll();
-    }
-
 }

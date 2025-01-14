@@ -2,11 +2,13 @@ package com.project.webapp.controller;
 
 import com.project.webapp.model.Airplane;
 import com.project.webapp.service.AirplaneService;
+import org.springframework.boot.Banner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,10 +37,38 @@ public class AirplaneController {
 
     @GetMapping("/airplane")
     public String findAllAirplanes(Model model) {
-        List<Airplane> allAirplanes = airplaneService.findAllAirplanes();
+        List<Airplane> allAirplanes = airplaneService.findAll();
         model.addAttribute("airplanes", allAirplanes);
         return "airplanes";
     }
+
+    @GetMapping("/airplane_find")
+    public String findAirplane(@RequestParam(required = false) String airplaneModel,
+                               @RequestParam(required = false) Integer airplaneCapacity,
+                               @RequestParam(required = false) Integer airplaneDistance,
+                               Model model) {
+        List<Airplane> foundAirplanes = airplaneService.findAll();
+
+        if (airplaneModel != null && !airplaneModel.isEmpty()) {
+            foundAirplanes = foundAirplanes.stream()
+                    .filter(airplane -> airplane.getModel().equalsIgnoreCase(airplaneModel))
+                    .toList();
+        }
+        if (airplaneCapacity != null) {
+            foundAirplanes = foundAirplanes.stream()
+                    .filter(airplane -> airplane.getCapacity().equals(airplaneCapacity))
+                    .toList();
+        }
+        if (airplaneDistance != null) {
+            foundAirplanes = foundAirplanes.stream()
+                    .filter(airplane -> airplane.getDistance().equals(airplaneDistance))
+                    .toList();
+        }
+
+        model.addAttribute("airplanes", foundAirplanes);
+        return "airplanes";
+    }
+
 
     @PostMapping("/airplane")
     public String addAirplane(@RequestParam String model, @RequestParam int capacity,
@@ -49,10 +79,10 @@ public class AirplaneController {
         airplane.setDistance(distance);
         airplaneService.addAirplane(airplane);
 
-        List<Airplane> allAirplanes = airplaneService.findAllAirplanes();
+        List<Airplane> allAirplanes = airplaneService.findAll();
         modelAttribute.addAttribute("airplanes", allAirplanes);
 
-        return "airplanes";
+        return "redirect:/airplane";
     }
 
     @PostMapping("/airplane_edit")
@@ -66,7 +96,7 @@ public class AirplaneController {
         }
 
         airplaneService.updateAirplane(airplaneId, newModel, newCapacity, newDistance);
-        List<Airplane> airplanes = airplaneService.findAllAirplanes();
+        List<Airplane> airplanes = airplaneService.findAll();
         model.addAttribute("airplanes", airplanes);
 
         return "redirect:/airplane";
@@ -75,7 +105,7 @@ public class AirplaneController {
     @PostMapping("/airplane_delete_by_id")
     public String deleteById(@RequestParam Long airplaneId, Model model) {
         airplaneService.deleteById( airplaneId);
-        List<Airplane> airplanes = airplaneService.findAllAirplanes();
+        List<Airplane> airplanes = airplaneService.findAll();
         model.addAttribute("airplanes", airplanes);
         return "redirect:/airplane";
     }
@@ -83,7 +113,7 @@ public class AirplaneController {
     @PostMapping("/airplane_delete_all")
     public String deleteAll(Model model) {
         airplaneService.deleteAll();
-        List<Airplane> allAirplanes = airplaneService.findAllAirplanes();
+        List<Airplane> allAirplanes = airplaneService.findAll();
         model.addAttribute("airplanes", allAirplanes);
         return "redirect:/airplane";
     }

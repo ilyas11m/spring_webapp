@@ -27,7 +27,7 @@ public class Flight {
     private String arrivalLocation;
 
     @Column(name = "duration_minutes", nullable = false)
-    private int durationMinutes;
+    private Integer durationMinutes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "airplane_id", nullable = false)
@@ -65,7 +65,7 @@ public class Flight {
         this.arrivalLocation = arrivalLocation;
     }
 
-    public int getDurationMinutes() {
+    public Integer getDurationMinutes() {
         return durationMinutes;
     }
 
