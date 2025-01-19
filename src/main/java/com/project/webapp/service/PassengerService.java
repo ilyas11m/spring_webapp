@@ -2,15 +2,14 @@ package com.project.webapp.service;
 
 import com.project.webapp.model.Passenger;
 import com.project.webapp.repository.PassengerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PassengerService {
-
+    
     private final PassengerRepository passengerRepository;
 
     public PassengerService(PassengerRepository passengerRepository) {
@@ -29,8 +28,27 @@ public class PassengerService {
         return passengerRepository.findById(passengerId).orElse(null);
     }
 
-    public Optional<Passenger> findByEmail(String email) {
-        return passengerRepository.findByEmail(email);
+    @Transactional
+    public Passenger updatePassenger(Long id, String firstName, String lastName, String email, String phoneNumber) {
+        Passenger passenger = passengerRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Passenger" +
+                " with ID " + id + " not found"));
+        if (firstName != null && !firstName.isEmpty()) {
+            passenger.setFirstName(firstName);
+        }
+        if (lastName != null && !lastName.isEmpty()) {
+            passenger.setLastName(lastName);
+        }
+        if (email != null && !email.isEmpty()) {
+            passenger.setEmail(email);
+        }
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            passenger.setPhoneNumber(phoneNumber);
+        }
+        return passengerRepository.save(passenger);
+    }
+
+    public void deleteById(Long id) {
+        passengerRepository.deleteById(id);
     }
 
     public void deleteAll() {

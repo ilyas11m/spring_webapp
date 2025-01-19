@@ -13,20 +13,20 @@
         <div class="list_links">
             <h1 class="airplane_list color_header">
                 <a th:href="@{/flight_airplane_page}">
-                    List of Airplanes
+                    Самолеты
                 </a>
             </h1>
             <h1 class="flights_list color_header"> 
-                List of Flights
+                Рейсы
             </h1>
             <h1 class="tickets_list color_header"> 
                 <a th:href="@{/flight_ticket_page}">
-                    List of Tickets
+                    Билеты
                 </a> 
             </h1>
             <h1 class="passengers_list color_header"> 
                 <a th:href="@{/flight_passenger_page}">
-                    List of Passengers
+                    Пассажиры
                 </a> 
             </h1>
         </div>
@@ -63,13 +63,23 @@
                 <button class="buttons_action">Поиск</button>
             </div>
             <div class="delete_by_id buttons">
-                <button class="buttons_action">Удалить по ID</button>
+                <button class="buttons_action">Удалить  </button>
             </div>
             <div class="delete buttons">
                 <form id="deleteAllFlights" action="flight_delete_all" method="post">
                     <button type="submit" class="buttons_action">Очистить</button>
                 </form>
             </div>
+        </div>
+        <div class="back_button">
+            <a th:href="@{/flight_back}">
+                Назад
+            </a>
+        </div>
+        <div class="main_button">
+            <a th:href="@{/main}">
+                Главная страница
+            </a>
         </div>
         <div id="createModal" class="modal">
             <div class="modal-content">
@@ -83,7 +93,7 @@
                         <input class="inputtextarea" type="number" id="durationMinutes" name="durationMinutes" placeholder="Длительность полёта (в минутах):" required><br>
                         <input class="inputtextarea" type="number" id="airplane" name="airplaneId" placeholder="ID Самолёта:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Сохранить </button>
+                    <button type="submit" class="buttons_action"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -106,7 +116,7 @@
         <div id="findModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeFindModal">&times;</span>
-                <h2 class="color_header">Поиск объекта Flight</h2>
+                <h2 class="color_header">Поиск Flight</h2>
                 <form id="findFlightsForm" action="flight_find" method="get">
                     <div class="input_area">
                         <input class="inputtextarea" type="text" id="foundFlightNumber" name="flightNumber" placeholder="Номер полёта:"><br>
@@ -114,7 +124,7 @@
                         <input class="inputtextarea" type="text" id="foundArrivalLocation" name="arrivalLocation" placeholder="Прилёт:"><br>
                         <input class="inputtextarea" type="number" id="foundDurationMinutes" name="durationMinutes" placeholder="Длительность полёта (в минутах):"><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Ок </button>
+                    <button type="submit" class="buttons_action"> Найти </button>
                 </form>
             </div>
         </div>
@@ -126,7 +136,7 @@
                     <div class="input_area">
                         <input class="inputtextarea" type="text" id="flightId" name="flightId" placeholder="ID of Flight:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Ок </button>
+                    <button type="submit" class="buttons_action"> Удалить </button>
                 </form>
             </div>
         </div>

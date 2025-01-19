@@ -2,13 +2,11 @@ package com.project.webapp.controller;
 
 import com.project.webapp.model.Airplane;
 import com.project.webapp.service.AirplaneService;
-import org.springframework.boot.Banner;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,11 +33,17 @@ public class AirplaneController {
         return "redirect:/passenger";
     }
 
+
     @GetMapping("/airplane")
     public String findAllAirplanes(Model model) {
         List<Airplane> allAirplanes = airplaneService.findAll();
         model.addAttribute("airplanes", allAirplanes);
         return "airplanes";
+    }
+
+    @GetMapping("/airplane_back")
+    public String back() {
+        return "redirect:/airplane";
     }
 
     @GetMapping("/airplane_find")
@@ -68,7 +72,6 @@ public class AirplaneController {
         model.addAttribute("airplanes", foundAirplanes);
         return "airplanes";
     }
-
 
     @PostMapping("/airplane")
     public String addAirplane(@RequestParam String model, @RequestParam int capacity,

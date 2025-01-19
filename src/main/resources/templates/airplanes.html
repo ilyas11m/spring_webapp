@@ -12,21 +12,21 @@
     <div class="container">
         <div class="list_links">
             <h1 class="airplane_list color_header">
-                List of Airplanes
+                Самолеты
             </h1>
             <h1 class="flights_list color_header"> 
                 <a th:href="@{/airplane_flight_page}">
-                    List of Flights
+                    Рейсы
                 </a> 
             </h1>
             <h1 class="tickets_list color_header"> 
                 <a th:href="@{/airplane_ticket_page}">
-                    List of Tickets
+                    Билеты
                 </a> 
             </h1>
             <h1 class="passengers_list color_header"> 
                 <a th:href="@{/airplane_passenger_page}">
-                    List of Passengers
+                    Пассажиры
                 </a> 
             </h1>
         </div>
@@ -59,13 +59,23 @@
                 <button class="buttons_action">Поиск</button>
             </div>
             <div class="delete_by_id buttons">
-                <button class="buttons_action">Удалить по ID</button>
+                <button class="buttons_action">Удалить</button>
             </div>
             <div class="delete buttons">
                 <form id="deleteAllAirplanes" action="airplane_delete_all" method="post">
                     <button type="submit" class="buttons_action">Очистить</button>
                 </form>
             </div>
+        </div>
+        <div class="back_button">
+            <a th:href="@{/airplane_back}">
+                Назад
+            </a>
+        </div>
+        <div class="main_button">
+            <a th:href="@{/main}">
+                Главная страница
+            </a>
         </div>
         <div id="createModal" class="modal">
             <div class="modal-content">
@@ -77,7 +87,7 @@
                         <input class="inputtextarea" type="number" id="capacity" name="capacity" placeholder="Вместимость Самолета:" required><br>
                         <input class="inputtextarea" type="number" id="distance" name="distance" placeholder="Дальность полета" required><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Сохранить </button>
+                    <button type="submit" class="buttons_action"> Добавить </button>
                 </form>
             </div>
         </div>
@@ -92,19 +102,7 @@
                         <input class="inputtextarea" type="number" id="editCapacity" name="newCapacity" placeholder="Изменить вместимость:"><br>
                         <input class="inputtextarea" type="number" id="editDistance" name="newDistance" placeholder="Изменить дальность полета"><br>
                     </div>
-                    <button type="submit" class="buttons_action"> Сохранить </button>
-                </form>
-            </div>
-        </div>
-        <div id="deleteByIdModal" class="modal">
-            <div class="modal-content">
-                <span class="close" id="closeDeleteByIdModal">&times;</span>
-                <h2 class="color_header">Удалить Airplane по ID</h2>
-                <form id="deleteByIdForm" action="airplane_delete_by_id" method="post">
-                    <div class="input_area">
-                        <input class="inputtextarea" type="text" id="airplaneId" name="airplaneId" placeholder="ID удаляемого Самолета:" required><br>
-                    </div>
-                    <button type="submit" class="buttons_action"> Ок </button>
+                    <button type="submit" class="buttons_action"> Изменить </button>
                 </form>
             </div>
         </div>
@@ -118,7 +116,19 @@
                         <input class="inputtextarea" type="text" id="foundAirplaneCapacity" name="airplaneCapacity" placeholder="Вместимость искомого Самолета:"><br>
                         <input class="inputtextarea" type="text" id="foundAirplaneDistance" name="airplaneDistance" placeholder="Дальность искомого Самолета:"><br>
                     </div>
-                    <button type="submit" class="buttons_action">Ок</button>
+                    <button type="submit" class="buttons_action"> Найти </button>
+                </form>
+            </div>
+        </div>
+        <div id="deleteByIdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDeleteByIdModal">&times;</span>
+                <h2 class="color_header">Удалить Airplane по ID</h2>
+                <form id="deleteByIdForm" action="airplane_delete_by_id" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="airplaneId" name="airplaneId" placeholder="ID удаляемого Самолета:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Удалить </button>
                 </form>
             </div>
         </div>

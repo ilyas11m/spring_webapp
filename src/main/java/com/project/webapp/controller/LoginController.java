@@ -11,7 +11,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "login.html";
+        return "login";
     }
 
     @PostMapping("/login")
@@ -20,7 +20,7 @@ public class LoginController {
             return "redirect:/products";
         }
         else {
-            return "login.html";
+            return "login";
         }
     }
 }

@@ -3,19 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/templates/css/main.css">
-    <title>Princeps_Airline</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <title>Princeps</title>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div id="header_menu">
-                <div id="logo_menu">
-                    <div class="logo_name"><h1>Princeps</h1></div>
-                    <img class="header_menu_pic" src="/templates/css/img/logo_pic.jpg"> 
-                </div>
-            </div>
-        </header>
+<header class="header">
+    <div id="header_menu">
+        <img class="header_menu_title" src="/img/PRINCEPS.png">
+        <img class="header_menu_pic" src="/img/lion_enhancedsa.png">
     </div>
+</header>
+<div class="container">
+    <div class="swiper">
+        <h2 class="title-swiper"><span> Вы не ошиблись с выбором авиакомпании!  <br> Перелеты высшего класса. </span></h2>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="/img/logo1.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/logo2.jpg">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/logo3.jpg">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="description">
+        <h1 class="description_title"> О нас : </h1>
+        <p class="description_content">
+            Добро пожаловать на борт нашей авиакомпании! Мы —
+            ваш надежный партнер в мире авиации, объединяющий комфорт, безопасность и высочайший уровень
+            сервиса. Наша миссия — делать путешествия доступными, удобными и незабываемыми, воплощая мечты о
+            покорении новых горизонтов.Мы гордимся современной технологичной флотилией, профессиональной командой
+            пилотов и бортпроводников, а также разнообразием маршрутов, охватывающих города по всему миру. Каждый
+            полет для нас — это не просто перемещение из точки А в точку Б, а возможность подарить вам комфорт и
+            положительные эмоции на каждом этапе вашего путешествия.
+        </p>
+    </div>
+    <footer class="footer">
+        <div class="book_ticket">
+            <form id="bookTickets" action="main_tables" method="get">
+                <button type="submit" class="book_button">
+                    Забронировать!
+                </button>
+            </form>
+        </div>
+    </footer>
+</div>
+<script>
+    const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            clickable: true,
+        },
+    });
+</script>
+<script>
+    $( function() {
+        $( "#accordion" ).accordion();
+    } );
+</script>
 </body>
 </html>
