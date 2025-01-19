@@ -6,6 +6,7 @@ import com.project.webapp.service.AirplaneService;
 import com.project.webapp.service.FlightService;
 import com.project.webapp.service.PassengerService;
 import com.project.webapp.service.TicketService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,21 +25,25 @@ public class FlightController {
         this.airplaneService = airplaneService;
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/flight_airplane_page")
     public String getAirplanePage(Model model) {
         return "redirect:/airplane";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/flight_ticket_page")
     public String getTicketPage() {
         return "redirect:/ticket";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/flight_passenger_page")
     public String getPassengerPage() {
         return "redirect:/passenger";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/flight")
     public String findAllFlights(Model model) {
         List<Flight> flights = flightService.findAll();
@@ -46,6 +51,12 @@ public class FlightController {
         return "flights";
     }
 
+    @GetMapping("/flight_back")
+    public String getFlightPage() {
+        return "redirect:/flight";
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping("/flight_find")
     public String findFlight(@RequestParam(required = false) String flightNumber,
                              @RequestParam(required = false) String departureLocation,
@@ -73,6 +84,7 @@ public class FlightController {
         return "flights";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/flight")
     public String addFlight(@RequestParam String flightNumber, @RequestParam String departureLocation,
                             @RequestParam String arrivalLocation, @RequestParam int durationMinutes,
@@ -92,6 +104,7 @@ public class FlightController {
         return "flights";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/flight_edit")
     public String editFlight(@RequestParam Long flightId,
                              @RequestParam(required = false) String newNumber,
@@ -112,6 +125,7 @@ public class FlightController {
         return "redirect:/flight";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/flight_delete_by_id")
     public String deleteById(@RequestParam Long flightId, Model model ) {
         flightService.deleteById(flightId);
@@ -120,6 +134,7 @@ public class FlightController {
         return "redirect:/flight";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/flight_delete_all")
     public String deleteAll(Model model) {
         flightService.deleteAll();

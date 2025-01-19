@@ -13,20 +13,20 @@
         <div class="list_links">
             <h1 class="airplane_list color_header">
                 <a th:href="@{/ticket_airplane_page}">
-                    List of Airplanes
+                    Самолеты
                 </a>
             </h1>
             <h1 class="flights_list color_header"> 
                 <a th:href="@{/ticket_flight_page}">
-                    List of Flights
+                    Рейсы
                 </a> 
             </h1>
             <h1 class="tickets_list color_header"> 
-                List of Tickets 
+                Билеты
             </h1>
             <h1 class="passengers_list color_header"> 
                 <a th:href="@{/ticket_passenger_page}">
-                    List of Passengers
+                    Пассажиры
                 </a> 
             </h1>
         </div>
@@ -54,36 +54,87 @@
         </table>
         <div class="actions buttons">
             <div class="create buttons">
-                <button class="buttons_action">Create</button>
+                <button class="buttons_action">Добавить</button>
             </div>
             <div class="edit buttons">
-                <button class="buttons_action">Edit</button>
+                <button class="buttons_action">Редактировать</button>
             </div>
             <div class="find buttons">
-                <button class="buttons_action">Find</button>
+                <button class="buttons_action">Поиск</button>
             </div>
             <div class="delete_by_id buttons">
-                <button class="buttons_action">Delete by id</button>
+                <button class="buttons_action">Удалить</button>
             </div>
             <div class="delete buttons">
                 <form id="deleteAllTickets" action="ticket_delete_all" method="post">
-                    <button type="submit" class="buttons_action">Clear all</button>
+                    <button type="submit" class="buttons_action">Очистить</button>
                 </form>
             </div>
+        </div>
+        <div class="back_button">
+            <a th:href="@{/ticket_back}">
+                Назад
+            </a>
+        </div>
+        <div class="main_button">
+            <a th:href="@{/main}">
+                Главная страница
+            </a>
         </div>
         <div id="createModal" class="modal">
             <div class="modal-content">
                 <span class="close" id="closeCreateModal">&times;</span>
-                <h2 class="color_header">Add New Ticket</h2>
+                <h2 class="color_header">Добавить новый объект Ticket</h2>
                 <form id="createTicketsForm" action="ticket" method="post">
                     <div class="input_area">
-                        <input class="inputtextarea" type="text" id="ticketNumber" name="ticketNumber" placeholder="Number of ticket:" required><br>
-                        <input class="inputtextarea" type="text" id="seatNumber" name="seatNumber" placeholder="Number of seat:" required><br>
-                        <input class="inputtextarea" type="text" id="price" name="price" placeholder="Price:" required><br>
-                        <input class="inputtextarea" type="number" id="passenger" name="passengerId" placeholder="Passenger's id:" required><br>
-                        <input class="inputtextarea" type="number" id="flight" name="flightId" placeholder="Flight's id:" required><br>
+                        <input class="inputtextarea" type="text" id="ticketNumber" name="ticketNumber" placeholder="Номер билета:" required><br>
+                        <input class="inputtextarea" type="text" id="seatNumber" name="seatNumber" placeholder="Номер места:" required><br>
+                        <input class="inputtextarea" type="text" id="price" name="price" placeholder="Цена:" required><br>
+                        <input class="inputtextarea" type="number" id="passenger" name="passengerId" placeholder="ID пассажира:" required><br>
+                        <input class="inputtextarea" type="number" id="flight" name="flightId" placeholder="ID полёта:" required><br>
                     </div>
-                    <button type="submit" class="buttons_action">Save</button>
+                    <button type="submit" class="buttons_action"> Добавить </button>
+                </form>
+            </div>
+        </div>
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeEditModal">&times;</span>
+                <h2 class="color_header">Изменить существующий объект Ticket</h2>
+                <form id="editTicketsForm" action="ticket_edit" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="number" id="ticketEditId" name="ticketId" placeholder="ID билета:" required><br>
+                        <input class="inputtextarea" type="text" id="ticketEditNumber" name="newTicketNumber" placeholder="Номер билета:"><br>
+                        <input class="inputtextarea" type="text" id="seatEditNumber" name="newSeatNumber" placeholder="Номер места:" ><br>
+                        <input class="inputtextarea" type="text" id="priceEdit" name="newPrice" placeholder="Цена:"><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Изменить </button>
+                </form>
+            </div>
+        </div>
+        <div id="findModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeFindModal">&times;</span>
+                <h2 class="color_header"> Поиск Ticket </h2>
+                <form id="findTicketsForm" action="ticket_find" method="get">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="text" id="foundTicketNumber" name="ticketNumber" placeholder="Номер билета:"><br>
+                        <input class="inputtextarea" type="text" id="foundSeatNumber" name="seatNumber" placeholder="Номер места:" ><br>
+                        <input class="inputtextarea" type="text" id="foundPrice" name="price" placeholder="Цена:"><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Найти </button>
+                </form>
+            </div>
+        </div>
+        <div id="deleteByIdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeDeleteByIdModal">&times;</span>
+                <h2 class="color_header"> Удалить Ticket по ID</h2>
+                <form id="deleteByIdTicketsForm" action="ticket_delete_by_id" method="post">
+                    <div class="input_area">
+                        <input class="inputtextarea" type="number" id="ticketId" name="ticketId" placeholder="ID билета:" required><br>
+                    </div>
+                    <button type="submit" class="buttons_action"> Удалить </button>
                 </form>
             </div>
         </div>
