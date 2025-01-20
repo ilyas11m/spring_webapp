@@ -61,6 +61,45 @@ input::-webkit-inner-spin-button {
 }
 /**************************/
 
+/* Header */
+
+#header_menu {
+	height: max-content;
+	padding-left: 190px;
+	padding-right: 190px;
+	background: #1c35b4;
+	box-shadow: 10px 10px 40px 10px rgba(0, 0, 0, 0.10);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header_menu_title {
+	font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	font-size: 36px;
+	color: white;
+	line-height: 50px;
+}
+
+.header_menu_pic {
+	position: absolute;
+	right: 739px;
+	font-family: sans-serif;
+	font-size: 20px;
+	letter-spacing: 3px;
+	color: rgb(23, 73, 98);
+	height: 4%;
+	width: 4%;
+}
+
+.header_menu_group {
+	display: flex;
+	align-items: center;
+	gap: 40px;
+}
+
+/**************************/
+
 /* Table customization */
 
 .table {
