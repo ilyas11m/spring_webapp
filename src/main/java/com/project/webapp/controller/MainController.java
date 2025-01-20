@@ -17,4 +17,9 @@ public class MainController {
     public String getTables() {
         return "redirect:/airplane";
     }
+
+    @GetMapping("/authorize")
+    public String login() {
+        return "redirect:/airplane";
+    }
 }

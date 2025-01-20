@@ -2,7 +2,6 @@ package com.project.webapp.controller;
 
 import com.project.webapp.model.Airplane;
 import com.project.webapp.service.AirplaneService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

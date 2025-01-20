@@ -9,33 +9,38 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link rel="icon" href="/img/icon2.png" type="image/x-icon">
     <title>Princeps</title>
 </head>
 <body>
 <header class="header">
     <div id="header_menu">
-        <img class="header_menu_title" src="/img/PRINCEPS.png">
-        <img class="header_menu_pic" src="/img/lion_enhancedsa.png">
+        <p class="header_menu_title"> PRINCEPS </p>
+        <img class="header_menu_pic" src="/img/logo_pic.jpg">
+        <div class="header_menu_group">
+            <p class="header_menu_title"> Airline Company </p>
+            <a class="header_menu_login" th:href="@{/authorize}"> LOGIN </a>
+        </div>
     </div>
 </header>
 <div class="container">
     <div class="swiper">
-        <h2 class="title-swiper"><span> Вы не ошиблись с выбором авиакомпании!  <br> Перелеты высшего класса. </span></h2>
+        <h2 class="title-swiper"><span> Flights with exclusive comfort </span></h2>
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="/img/logo1.jpg">
             </div>
             <div class="swiper-slide">
-                <img src="/img/logo2.jpg">
+                <img src="/img/logo2.png">
             </div>
             <div class="swiper-slide">
-                <img src="/img/logo3.jpg">
+                <img src="/img/logo3.png">
             </div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
     <div class="description">
-        <h1 class="description_title"> О нас : </h1>
+        <h1 class="description_title"> О нас: </h1>
         <p class="description_content">
             Добро пожаловать на борт нашей авиакомпании! Мы —
             ваш надежный партнер в мире авиации, объединяющий комфорт, безопасность и высочайший уровень
