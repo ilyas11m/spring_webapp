@@ -1,10 +1,12 @@
 package com.project.webapp.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "flights")
 public class Flight {
@@ -32,54 +34,6 @@ public class Flight {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "airplane_id", nullable = false)
     private Airplane airplane;
-
-    public long getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(long flightId) {
-        this.flightId = flightId;
-    }
-
-    public String getFlightNumber() {
-        return flightNumber;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public String getDepartureLocation() {
-        return departureLocation;
-    }
-
-    public void setDepartureLocation(String departureLocation) {
-        this.departureLocation = departureLocation;
-    }
-
-    public String getArrivalLocation() {
-        return arrivalLocation;
-    }
-
-    public void setArrivalLocation(String arrivalLocation) {
-        this.arrivalLocation = arrivalLocation;
-    }
-
-    public Integer getDurationMinutes() {
-        return durationMinutes;
-    }
-
-    public void setDurationMinutes(int durationMinutes) {
-        this.durationMinutes = durationMinutes;
-    }
-
-    public Airplane getAirplane() {
-        return airplane;
-    }
-
-    public void setAirplane(Airplane airplane) {
-        this.airplane = airplane;
-    }
 
     @Override
     public String toString() {
