@@ -1,10 +1,12 @@
 package com.project.webapp.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "airplanes")
 public class Airplane {
@@ -25,38 +27,6 @@ public class Airplane {
 
     @Column(name = "distance", nullable = false)
     private Integer distance;
-
-    public long getAirplaneId() {
-        return airplaneId;
-    }
-
-    public void setAirplaneId(Long airplaneId) {
-        this.airplaneId = airplaneId;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public Integer getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Integer distance) {
-        this.distance = distance;
-    }
 
     @Override
     public String toString() {
